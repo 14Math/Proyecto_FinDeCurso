@@ -9,7 +9,7 @@ import principales.GestionClientes;
 public interface EmpleadoDao extends GestionClientes<Integer, Empleado>{
 	
 	List<Empleado> empleadoByDepartamento(int idDepar);
-	List<Empleado> empleadoBySexo(char sexo);
+	List<Empleado> empleadoBySexo(String sexo);
 	List<Empleado> empleadoByApellido(String subcadena);
 	double salarioTotal();
 	double salarioTotal(int idDepar);

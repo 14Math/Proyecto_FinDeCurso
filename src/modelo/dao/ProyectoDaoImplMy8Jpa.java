@@ -1,7 +1,6 @@
 package modelo.dao;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.List;
 
 import modelo.entidades.Proyecto;
@@ -49,7 +48,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Proyecto> mostrarTodos() {
-		jpql = "select c from empleados c";
+		jpql = "select p from Proyecto p";
 		query = em.createQuery(jpql);
 		return query.getResultList();
 	}
@@ -89,7 +88,7 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 
 	@Override
 	public double importesVentaProyectosTerminados() {
-		jpql = "select sum(p.venta_previsto) from proyectos where p.estado = 'TERMINADO'";
+		jpql = "select sum(p.ventaPrevisto) from Proyecto p where p.estado = 'TERMINADO'";
         query = em.createQuery(jpql);
         return ((BigDecimal)query.getSingleResult()).doubleValue();
 	}
@@ -97,18 +96,20 @@ public class ProyectoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Proy
 	@Override
 	public double margenBrutoProyectosTerminados() {
 		// Diferencia suma Importes venta y gastos reales
-        return 0;
+		jpql = "select sum(p.ventaPrevisto-p.costeReal) from Proyecto p where p.estado = 'TERMINADO'";
+        query = em.createQuery(jpql);
+        return ((BigDecimal)query.getSingleResult()).doubleValue();
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public int diasATerminoProyectoActivo(String codigoProyecto) {
 		// Cuantos días quedan para terminar el proyecto (diferencia entre fecha_fin_previsto y la fecha de hoy)
-		jpql= "select current_date() as dia_de_hoy , p.fecha_fin_previsto, datediff(current_date(),p.fecha_fin_previsto) as dia_de_hoy_menos_fin_previsto from proyectos p;"; 
+		jpql= "select datediff(current_date(),p.fechaFinPrevisto)  from Proyecto p where p.idProyecto= :codP"; 
 		// select current_date() as dia_de_hoy , fecha_fin_previsto, datediff(current_date(),fecha_fin_previsto) 
 		// as dia_de_hoy_menos_fin_previsto from proyectos;
         query = em.createQuery(jpql);
-        query.setParameter("cif", codigoProyecto);
-        return ((Date)query.getResultList().);
+        query.setParameter("codP", codigoProyecto);
+        return (int)query.getSingleResult();
 	}
 
 }

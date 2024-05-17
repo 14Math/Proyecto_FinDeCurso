@@ -17,8 +17,8 @@ public class TestClienteDao {
     
     public static void main(String[] args) {
         //buscaruno();
-        //mostrartodos();
-        alta();
+        mostrartodos();
+        //alta();
         //eliminar();
         //salir();
 
@@ -35,7 +35,6 @@ public class TestClienteDao {
            System.out.println(cdao.buscarUno("789456L"));
         }
     public static void mostrartodos() {
-        System.out.println("BUCAR TODOS");
         cdao.mostrarTodos().forEach(System.out::println);
     }
     public static void salir() {

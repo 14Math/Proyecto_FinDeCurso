@@ -70,7 +70,7 @@ public class EmpleadoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements Empl
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Empleado> empleadoBySexo(char sexo) {
+    public List<Empleado> empleadoBySexo(String sexo) {
         jpql= "select e from Empleado e where e.genero = :sex ";
         query = em.createQuery(jpql);
         query.setParameter("sex", sexo);
