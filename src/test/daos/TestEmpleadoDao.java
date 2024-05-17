@@ -27,7 +27,7 @@ public class TestEmpleadoDao {
 		//empleadosPorSexo();
 		//empleadosPorApellido();
 		//salarioTotal();
-		salario();
+		//salario();
 
 	}
 	
