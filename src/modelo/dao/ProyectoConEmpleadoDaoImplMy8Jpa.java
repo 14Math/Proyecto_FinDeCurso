@@ -7,6 +7,11 @@ import java.util.List;
 import modelo.entidades.ProyectoConEmpleado;
 
 public class ProyectoConEmpleadoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa implements ProyectoConEmpleadoDao {
+	private static ProyectoDao cdao;
+	static {
+        
+        cdao= new ProyectoDaoImplMy8Jpa();
+    }
 
 	@Override
 	public boolean alta(ProyectoConEmpleado obj) {
@@ -70,40 +75,35 @@ public class ProyectoConEmpleadoDaoImplMy8Jpa extends AbstractDaoImplMy8Jpa impl
         return query.getResultList();
     }
 
-	 @Override
-	    public int asignarEmpleadosAProyecto(List<ProyectoConEmpleadoDao> empleados) {
+	public int asignarEmpleadosAProyecto(List<ProyectoConEmpleado> empleados) {
 
-	        tx.begin();
-	        for(ProyectoConEmpleadoDao ep: empleados ) {
-	            em.persist(ep);
-	        }
-	        tx.commit();
-	        return empleados.size();
-	    }
+        tx.begin();
+        for(ProyectoConEmpleado ep: empleados ) {
+            em.persist(ep);
+        }
+        tx.commit();
+        return empleados.size();
+    }
 
-	
-	@Override
-	public int horasAsignadasAProyecto(String codigoProyecto) {
-		jpql= "select sum(p.horasAsignadas) from ProyectoConEmpleado p where p.proyecto.idProyecto= :cod";
+    @Override
+    public int horasAsignadasAProyecto(String codigoProyecto) {
+        jpql = "select sum(p.horasAsignadas) from ProyectoConEmpleado p where p.proyecto.idProyecto = :pr";
         query = em.createQuery(jpql);
-        query.setParameter("cod", codigoProyecto);
-        return (int)query.getSingleResult();
-	}
+        query.setParameter("pr", codigoProyecto);
+        return ((int)query.getSingleResult());
+    }
 
-	@Override
+    @Override
     public double costeActualDeProyecto(String codigoProyecto) {
-        jpql = "select p from ProyectoConEmpleado p where p.proyecto.costeReal = :cod";
+        jpql = "select sum(p.horasAsignadas * p.empleado.perfil.tasaStandard) from ProyectoConEmpleado p where p.proyecto.idProyecto = :pr";
         query = em.createQuery(jpql);
-        query.setParameter("cod", codigoProyecto);
+        query.setParameter("pr", codigoProyecto);
         return ((BigDecimal)query.getSingleResult()).doubleValue();
     }
 
     @Override
     public double margenActualProyecto(String codigoProyecto) {
-        jpql= "select p from ProyectoConEmpleado p where p.proyecto.margenReal() = :cod";
-        query = em.createQuery(jpql);
-        query.setParameter("cod", codigoProyecto);
-        return ((BigDecimal)query.getSingleResult()).doubleValue();
-    } 
+        return cdao.buscarUno(codigoProyecto).margenReal() - costeActualDeProyecto(codigoProyecto);
+    }
 
 }
