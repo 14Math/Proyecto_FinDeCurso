@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/15a853df81.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body style="background-image: url(''); background-size: cover; background-position: center;">
+    <!-- Header -->
+    <header class="bg-white position-fixed">
+        <div id="logo">
+            <a class="navbar-brand " href="index.html"><img
+                    src="imagenes/logos/Colorful_Abstract_Online_Shop_Free_Logo.webp" alt="Trouvez-le"></a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Buscador -->
+        <form class="d-flex" role="search" style="width: 50%;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                style="border-radius: 50px; border-color: #74C0FC;">
+
+            <button class="btn" type="submit" style="width: 50px;">
+                <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #74C0FC;"></i></button>
+        </form>
+        <!-- Inicio de Sesión o Registro-->
+        <div>
+            <button class="nav-link" style="color: #74C0FC;" id="abrirModalLogin">
+                <i class="fa-regular fa-user fa-lg"></i> &nbsp;Identifícate / Regístrate
+            </button>
+        </div>
+        <!-- Favoritos -->
+        <div>
+            <button class="nav-link" style="color: #74C0FC;"
+                onclick="document.getElementById('carritoHTML').showModal();">
+                <i class="fa-solid fa-heart fa-lg"></i> &nbsp;Favoritos</button>
+        </div>
+    </header>
+    <!-- Nav -->
+    <nav class="position-fixed" style="background-color: #74C0FC; box-shadow: 0px 6px 1px rgba(116, 211, 248, 0.2)">
+        <div>
+            <a class="nav-link text-light" href="perfumeria.html"><i class="fa-solid fa-spray-can fa-lg"
+                    style="color: #ffffff;"></i> &nbsp;Perfumeria</a>
+        </div>
+        <div>
+            <a class="nav-link text-light" href="libreria.html"> <i class="fa-solid fa-book fa-lg"
+                    style="color: #ffffff;"></i> &nbsp;Libreria</a>
+        </div>
+        <div>
+            <a class="nav-link text-light" href="electronica.html"> <i class="fa-solid fa-mobile-screen fa-lg"
+                    style="color: #ffffff;"></i> &nbsp;Electrónica</a>
+        </div>
+        <div>
+            <a class="nav-link text-light" href="videojuegos.html"> <i class="fa-solid fa-gamepad fa-lg"
+                    style="color: #ffffff;"></i> &nbsp;Videojuegos</a>
+        </div>
+        <div>
+            <a class="nav-link text-light" href="juguetes.html"> <i class="fa-solid fa-sleigh fa-lg"
+                    style="color: #ffffff;"></i> &nbsp;Juguetes</a>
+        </div>
+    </nav>
+
+    <div id="verProductos" class="productos">
+
+
+    </div>
+
+    <!-- MODAL CARRITO-->
+    <dialog id="carritoHTML" class="position-relative">
+
+        <button class="btn btn-danger position-absolute top-0 end-0"
+            onclick="document.getElementById('carritoHTML').close();">X</button>
+        <br>
+
+        <div>
+            Precio total: <div id="total">0€</div>
+        </div>
+        <br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Precio total</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+
+            <tbody id="carrito">
+
+            </tbody>
+        </table>
+    </dialog>
+
+    <!-- Modal Inicio Sesión y Registro -->
+    <div id="ventanaModalLogin" class="modal">
+
+
+        <div class="glass-container">
+            <div class="login-box">
+                <h2>Login</h2>
+                <form action="#" method="POST">
+
+                    <input type="text" id="username" name="username" required placeholder="Username">
+
+                    <input type="password" id="password" name="password" required placeholder="Password">
+
+                    <div class="options">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit">Login</button>
+
+                    <p>Don't have an account? <a href="#" id="register">Register</a></p>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Modal Formulario Añadir Producto -->
+
+        <script src="script.js"></script>
+        <script src="carrito.js"></script>
+        <script src="modal.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

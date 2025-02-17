@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styleCategorias.css">
+    <script src="https://kit.fontawesome.com/15a853df81.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-image: url(''); background-size: cover; background-position: center;">
+    <!-- Header -->
+    <header class="bg-white position-fixed">
+        <div id="logo">
+            <a class="navbar-brand " href="index.html"><img
+                    src="imagenes/logos/Colorful_Abstract_Online_Shop_Free_Logo.webp" alt="Trouvez-le"></a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Buscador -->
+        <form class="d-flex" role="search" style="width: 50%;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                style="border-radius: 50px; border-color: #74C0FC;">
+
+            <button class="btn" type="submit" style="width: 50px;">
+                <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #74C0FC;"></i></button>
+        </form>
+        <!-- Inicio de Sesión o Registro-->
+        <div id="iniciarSesion">
+            <button class="nav-link" style="color: #74C0FC;" onclick="document.getElementById('login').showModal();">
+                <i class="fa-regular fa-user fa-lg"></i> Identifícate / Regístrate
+            </button>
+        </div>
+        <!-- Carrito -->
+        <div>
+            <button class="nav-link" style="color: #74C0FC;"
+                onclick="document.getElementById('carritoHTML').showModal();">
+                <i class="fa-solid fa-cart-shopping fa-lg"></i> Carrito</button>
+        </div>
+    </header>
+    <!-- Nav -->
+    <nav class="position-fixed" style="background-color: #74C0FC; box-shadow: 0px 6px 1px rgba(116, 211, 248, 0.2);
+    background-image: url('imagenes/wallpaper/'); background-size: cover; background-position: center;">
+        <div>
+            <i class="fa-solid fa-book fa-lg" style="color: #ffffff;"></i>&nbsp;&nbsp;Libreria
+        </div>
+    </nav>
+
+
+
+    <div class="productos">
+
+        <div class="producto">
+            <p>Producto A</p>
+            <p>5€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto B</p>
+            <p>10€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto C</p>
+            <p>15€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto D</p>
+            <p>55€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto E</p>
+            <p>25€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto F</p>
+            <p>20€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto G</p>
+            <p>99€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+        <div class="producto">
+            <p>Producto H</p>
+            <p>149€</p>
+            <p>Cantidad: <input type="number" value="1" min="1"></p>
+            <button>Añadir al carrito</button>
+        </div>
+
+    </div>
+
+    <!-- MODAL CARRITO-->
+    <dialog id="carritoHTML" class="position-relative">
+
+        <button class="btn btn-danger position-absolute top-0 end-0"
+            onclick="document.getElementById('carritoHTML').close();">X</button>
+        <br>
+
+        <div>
+            Precio total: <div id="total">0€</div>
+        </div>
+        <br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Precio total</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+
+            <tbody id="carrito">
+
+            </tbody>
+        </table>
+    </dialog>
+
+    <!-- Modal Inicio Sesión y Registro -->
+    <dialog class="container position-relative" id="login">
+
+        <button class="btn btn-danger position-absolute top-0 end-0"
+            onclick="document.getElementById('login').close();">X</button><br>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Bienvenido</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="username">Usuario</label>
+                        <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+                    <p class="text-center mt-3">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+                </form>
+            </div>
+        </div>
+
+    </dialog>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
